@@ -1,18 +1,47 @@
-pip install mediapipe
-pip install deepface
-pip install tensorflow
-pip install flask opencv-python
+<h1 align="center">🤖 AI Vision Live (Windows)</h1>
+<p align="center">
+  <b>Detecção em tempo real com YOLOv8 • MediaPipe • DeepFace • Flask</b><br>
+  🎯 Objetos • Faces • Emoções • Mãos & Gestos
+</p>
 
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10-blue.svg">
+  <img src="https://img.shields.io/badge/Flask-3.x-black.svg">
+  <img src="https://img.shields.io/badge/OpenCV-4.x-green.svg">
+  <img src="https://img.shields.io/badge/YOLO-v8-orange.svg">
+  <img src="https://img.shields.io/badge/MediaPipe-hands%2Fface-yellow.svg">
+  <img src="https://img.shields.io/badge/DeepFace-emotions-red.svg">
+</p>
 
-POWER SHEW - Só o python !
+---
 
-py -3.10 c:\Users\gabri\Documents\jarvis\jarvis.py
+## 🧠 Sobre o projeto
 
-Rodar Localmente com HTML
+**AI Vision Live** é um sistema completo de **visão artificial interativa**, criado por **Gabriel Rehbein (GMR Dev)**.  
+Ele combina **IA em tempo real** com uma interface **Flask web moderna**, permitindo detectar:
 
- py -3.10 c:\Users\gabri\Documents\jarvis\app.py
+- 🧍‍♂️ **Faces**
+- 😀 **Emoções**
+- ✋ **Mãos e gestos**
+- 📦 **Objetos (YOLOv8)**
+- 🧩 **ROI (região de interesse)**
+- ⚙️ **Controles clicáveis e teclado ativo**
 
- Q para desligar a Câmera (as vezes 2) --> crt - se ficar muito grande a tela ... resolver isso kkk11
-Abra em http://127.0.0.1:5000/
+---
 
-ctrl C para parar a câmera e o servidor na WEB
+## ⚙️ Requisitos
+
+| Sistema | Versão |
+|----------|--------|
+| 💻 **Windows** | 10 ou 11 |
+| 🐍 **Python** | 3.10 (recomendado) |
+| 📸 **Webcam** | Integrada ou USB |
+| 💡 **Terminal** | PowerShell ou CMD |
+
+---
+
+## 📦 Instalação
+
+### 🔧 Dependências principais
+```bash
+pip install flask opencv-python mediapipe deepface tensorflow ultralytics numpy
