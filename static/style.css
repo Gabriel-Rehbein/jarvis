@@ -1,0 +1,39 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: #0e0e10;
+    color: #eee;
+    margin: 0;
+    text-align: center;
+}
+header {
+    padding: 20px;
+    background: linear-gradient(90deg, #101010, #202020);
+    border-bottom: 2px solid #444;
+}
+h1 { color: #66ccff; }
+.video img {
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    border-radius: 10px;
+    border: 2px solid #333;
+}
+.controls button {
+    background: #111;
+    color: #fff;
+    border: 1px solid #444;
+    padding: 10px 15px;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.controls button:hover {
+    background: #66ccff;
+    color: #000;
+}
+#statusPanel {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #aaa;
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Vision Live — Painel Web</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>AI Vision Live</h1>
+        <p>Monitoramento com Flask + OpenCV</p>
+    </header>
+
+    <main>
+        <section class="video">
+            <img src="{{ url_for('video_feed') }}" id="videoStream">
+        </section>
+
+        <section class="controls">
+            <button onclick="toggle('faces')">Rostos</button>
+            <button onclick="toggle('objects')">Objetos</button>
+        </section>
+
+        <div id="statusPanel"></div>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
