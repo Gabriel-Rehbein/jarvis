@@ -1,29 +1,102 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>AI Vision Live — Painel Web</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta charset="UTF-8" />
+  <title>AI Vision Live — Painel Web</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 </head>
 <body>
-    <header>
-        <h1>AI Vision Live</h1>
-        <p>Monitoramento com Flask + OpenCV</p>
-    </header>
+  <header class="topbar">
+    <h1>AI Vision Live</h1>
+    <div class="session-info">
+      <span id="srcLabel">SRC: —</span>
+      <span id="sizeLabel">SIZE: —</span>
+      <span id="fpsLabel">FPS: —</span>
+    </div>
+  </header>
 
-    <main>
-        <section class="video">
-            <img src="{{ url_for('video_feed') }}" id="videoStream">
-        </section>
+  <main class="container">
+    <!-- Vídeo + Canvas para ROI e desenho -->
+    <section class="video-wrap">
+      <div class="video-stage">
+        <img id="videoStream" src="{{ url_for('video_feed') }}" alt="stream" />
+        <canvas id="overlay"></canvas>
+      </div>
+      <div class="legend">
+        <strong>Mouse (ROI):</strong> arraste p/ definir; duplo-clique p/ limpar
+      </div>
+    </section>
 
-        <section class="controls">
-            <button onclick="toggle('faces')">Rostos</button>
-            <button onclick="toggle('objects')">Objetos</button>
-        </section>
+    <!-- Controles principais -->
+    <section class="controls-grid">
+      <div class="group">
+        <h3>Sessão</h3>
+        <button data-cmd="quit" class="btn danger">Sair (q)</button>
+        <button data-cmd="pause" class="btn">Pausar/Retomar (space)</button>
+        <button data-cmd="next_frame" class="btn">+1 Frame (n)</button>
+        <button data-cmd="next_camera" class="btn">Próx. Câmera (c)</button>
+      </div>
 
-        <div id="statusPanel"></div>
-    </main>
+      <div class="group">
+        <h3>Detecções</h3>
+        <button data-toggle="objects" class="btn toggle">Objetos (o)</button>
+        <button data-toggle="faces" class="btn toggle">Faces (f)</button>
+        <button data-toggle="emotion" class="btn toggle">Emoção (e)</button>
+        <button data-toggle="hands" class="btn toggle">Mãos (h)</button>
+        <button data-toggle="help" class="btn toggle">Ajuda (k)</button>
+      </div>
 
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+      <div class="group">
+        <h3>Visual</h3>
+        <button data-toggle="face_blur" class="btn toggle">Blur Faces (b)</button>
+        <button data-toggle="grid" class="btn toggle">Grade (g)</button>
+      </div>
+
+      <div class="group">
+        <h3>Triggers</h3>
+        <button data-toggle="motion_only" class="btn toggle">Motion-Only (m)</button>
+        <button data-toggle="auto_rec" class="btn toggle">Auto-Rec (a)</button>
+      </div>
+
+      <div class="group">
+        <h3>Regiões</h3>
+        <button id="polyModeBtn" class="btn toggle" data-cmd="poly_mode">Polígono (z)</button>
+        <button id="polyClearBtn" class="btn" data-cmd="poly_clear">Limpar Polígono (x)</button>
+        <button id="tripwireBtn" class="btn toggle" data-cmd="tripwire_mode">Tripwire (t)</button>
+      </div>
+
+      <div class="group">
+        <h3>Mídia</h3>
+        <button data-cmd="record_toggle" class="btn success">Gravar (r)</button>
+        <button data-cmd="screenshot" class="btn">Screenshot (p)</button>
+      </div>
+
+      <div class="group">
+        <h3>YOLO</h3>
+        <div class="slider-row">
+          <label for="confRange">Confiança: <span id="confVal">0.50</span></label>
+          <input id="confRange" type="range" min="0" max="100" value="50" step="1" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Status -->
+    <section class="status">
+      <div class="status-item">Objetos: <span id="st_objects">—</span></div>
+      <div class="status-item">Faces: <span id="st_faces">—</span></div>
+      <div class="status-item">Emoção: <span id="st_emotion">—</span></div>
+      <div class="status-item">Mãos: <span id="st_hands">—</span></div>
+      <div class="status-item">Blur Faces: <span id="st_face_blur">—</span></div>
+      <div class="status-item">Grade: <span id="st_grid">—</span></div>
+      <div class="status-item">Motion-Only: <span id="st_motion_only">—</span></div>
+      <div class="status-item">Auto-Rec: <span id="st_auto_rec">—</span></div>
+      <div class="status-item">Polígono: <span id="st_poly_pts">0</span> pts</div>
+      <div class="status-item">Tripwire: <span id="st_tripwire">—</span></div>
+      <div class="status-item">ROI: <span id="st_roi">—</span></div>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
